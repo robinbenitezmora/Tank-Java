@@ -6,5 +6,7 @@ public class Main {
 
  public static void main(String[] args) throws IOException {
   ServerGUI serverGUI = new ServerGUI();
+
+  serverGUI.setVisible(true);
  }
 }

@@ -1,0 +1,7 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GameServer" default="default" basedir=".">
+  <description>Builds, tests, and runs the GameServer</description>
+  <import file="build-common.xml" />
+</project>
+

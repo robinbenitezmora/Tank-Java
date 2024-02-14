@@ -1,5 +1,15 @@
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+
+import javafx.scene.image.Image;
+import java.applet.AudioClip;
+import java.awt.image.BufferedImage;
+
 public class Bomb {
- private Image bombImg;
+ private java.awt.Image bombImg;
  private BufferedImage bombBuffImage;
 
  private int xPos;
@@ -9,18 +19,18 @@ public class Bomb {
  private float velocityX = 0.05f, velocityY = 0.05f;
 
  public Bomb(int x, int y, int direction) {
-  final SimpleSoundPlayer sound_boom = new SimpleSoundPlayer("sounds/boom.wav");
-  final InputStream stream_boom = new ByteArrayInputStream(sound_boom.getSamples());
+  AudioClip sound_boom = (AudioClip) sound_boom;
+  final InputStream stream_boom = new ByteArrayInputStream(sound_boom.toString().getBytes());
   xPos = x;
   yPos = y;
   this.direction = direction;
   stop = false;
   bombImg = new ImageIcon("images/bomb.png").getImage();
-  bombBuffImage = new BufferedImage(bombImg.getWidth(null), bombImg.getHeight(null), BufferedImage.TYPE_INT_RGB);
+  bombBuffImage = new BufferedImage(bombImg.getWidth(null), bombImg.getHeight(null), BufferedImage.TYPE_INT_ARGB);
   bombBuffImage.getGraphics().drawImage(bombImg, 0, 0, null);
-  Thread t = new Thread(new Runnable) {
+  Thread t = new Thread(new Runnable() {
    public void run() {
-    sound_boom.play(stream_boom);
+    sound_boom.play();
    }
   });
   t.start();
@@ -59,8 +69,8 @@ public class Bomb {
     y = clientTanks.get(i).getYPosition();
 
     if (yPos >= y && yPos <= y + 30 && xPos >= x && xPos <= x + 30) {
-     clientGUI.setScore(50);
-     clientGUI.gameStatusPanel.repaint();
+     ClientGUI clientGUI = (ClientGUI) clientGUI;
+     ((GameStatusPanel) clientGUI.gameStatusPanel).repaint();
 
      try {
       Thread.sleep(1000);
@@ -68,7 +78,7 @@ public class Bomb {
       e.printStackTrace();
      }
      if (clientTanks.get(i) != null)
-      Client.getGameClient().sendToServer(new Protocol().RemoveClientPacket(clientTanks.get(i).getTankID()));
+      Client.getGameClient().sendToServer(new Protocol().RemoveClientPacket((Object) clientTanks.get(i).getTankID()));
      return true;
     }
    }

@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.Socket;
@@ -156,13 +157,15 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
       registerButton.setEnabled(true);
     }
   }
- }
 
   public void windowOpened(WindowEvent e) {
   }
 
   public void windowClosing(WindowEvent e) {
     Client.getGameClient().sendToServer(new Protocol().ExitMessagePacket(clientTankID()));
+  }
+
+  private Object clientTankID() {
   }
 
   public void windowClosed(WindowEvent e) {
@@ -183,6 +186,7 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
   public class ClientRecivingThread extends Thread {
     Socket clientSocket;
     DataInputStream reader;
+    private Object clientTank;
 
     public ClientRecivingThread(Socket clientSocket) {
       this.clientSocket = clientSocket;
@@ -194,111 +198,113 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 
     }
 
-    public void run()
+    public void run() {
 
-         while(isRunning) 
-            {
-                String sentence="";
-                try {
-                    sentence=reader.readUTF();                
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }                
-               if(sentence.startsWith("ID"))
-               {
-                    int id=Integer.parseInt(sentence.substring(2));
-                    clientTank.setTankID(id);
-                    System.out.println("My ID= "+id);
-                    
-               }
-               else if(sentence.startsWith("NewClient"))
-               {
-                    int pos1=sentence.indexOf(',');
-                    int pos2=sentence.indexOf('-');
-                    int pos3=sentence.indexOf('|');
-                    int x=Integer.parseInt(sentence.substring(9,pos1));
-                    int y=Integer.parseInt(sentence.substring(pos1+1,pos2));
-                    int dir=Integer.parseInt(sentence.substring(pos2+1,pos3));
-                    int id=Integer.parseInt(sentence.substring(pos3+1,sentence.length()));
-                    if(id!=clientTank.getTankID())
-                        boardPanel.registerNewTank(new Tank(x,y,dir,id));
-               }   
-               else if(sentence.startsWith("Update"))
-               {
-                    int pos1=sentence.indexOf(',');
-                    int pos2=sentence.indexOf('-');
-                    int pos3=sentence.indexOf('|');
-                    int x=Integer.parseInt(sentence.substring(6,pos1));
-                    int y=Integer.parseInt(sentence.substring(pos1+1,pos2));
-                    int dir=Integer.parseInt(sentence.substring(pos2+1,pos3));
-                    int id=Integer.parseInt(sentence.substring(pos3+1,sentence.length()));
-                
-                    if(id!=clientTank.getTankID())
-                    {
-                        boardPanel.getTank(id).setXpoistion(x);
-                        boardPanel.getTank(id).setYposition(y);
-                        boardPanel.getTank(id).setDirection(dir);
-                        boardPanel.repaint();
-                    }
-                    
-               }
-               else if(sentence.startsWith("Shot"))
-               {
-                    int id=Integer.parseInt(sentence.substring(4));
-                
-                    if(id!=clientTank.getTankID())
-                    {
-                        boardPanel.getTank(id).Shot();
-                    }
-                    
-               }
-               else if(sentence.startsWith("Remove"))
-               {
-                  int id=Integer.parseInt(sentence.substring(6));
-                  
-                  if(id==clientTank.getTankID())
-                  {
-                        int response=JOptionPane.showConfirmDialog(null,"Sorry, You are loss. Do you want to try again ?","Tanks 2D Multiplayer Game",JOptionPane.OK_CANCEL_OPTION);
-                        if(response==JOptionPane.OK_OPTION)
-                        {
-                            //client.closeAll();
-                            setVisible(false);
-                            dispose();
-                            
-                            new ClientGUI();
-                        }
-                        else
-                        {
-                            System.exit(0);
-                        }
-                  }
-                  else
-                  {
-                      boardPanel.removeTank(id);
-                  }
-               }
-               else if(sentence.startsWith("Exit"))
-               {
-                   int id=Integer.parseInt(sentence.substring(4));
-                  
-                  if(id!=clientTank.getTankID())
-                  {
-                      boardPanel.removeTank(id);
-                  }
-               }
-                      
-            }
-           
-            try {
-              reader.close();
-              clientSocket.close();
-            } catch (IOException ex) {
-              ex.printStackTrace();
-            }
-                ex.printStackTrace();
-            }
+      while (isRunning) {
+        String sentence = "";
+        try {
+          sentence = reader.readUTF();
+        } catch (IOException ex) {
+          ex.printStackTrace();
+        }
+        if (sentence.startsWith("ID")) {
+          int id = Integer.parseInt(sentence.substring(2));
+          ((Tank) clientTank).setTankID(id);
+          System.out.println("My ID= " + id);
+        } else if (sentence.startsWith("NewClient")) {
+          int pos1 = sentence.indexOf(',');
+          int pos2 = sentence.indexOf('-');
+          int pos3 = sentence.indexOf('|');
+          int x = Integer.parseInt(sentence.substring(9, pos1));
+          int y = Integer.parseInt(sentence.substring(pos1 + 1, pos2));
+          int dir = Integer.parseInt(sentence.substring(pos2 + 1, pos3));
+          int id = Integer.parseInt(sentence.substring(pos3 + 1, sentence.length()));
+          if (z) {
+            boardPanel.registerNewTank(new Tank());
+          }
+        } else if (sentence.startsWith("Update")) {
+          int pos1 = sentence.indexOf(',');
+          int pos2 = sentence.indexOf('-');
+          int pos3 = sentence.indexOf('|');
+          int x = Integer.parseInt(sentence.substring(6, pos1));
+          int y = Integer.parseInt(sentence.substring(pos1 + 1, pos2));
+          int dir = Integer.parseInt(sentence.substring(pos2 + 1, pos3));
+          int id = Integer.parseInt(sentence.substring(pos3 + 1, sentence.length()));
 
+          if (id != ((Tank) clientTank).getTankID()) {
+            boardPanel.getTank(id).setXpoistion(x);
+            boardPanel.getTank(id).setYposition(y);
+            boardPanel.getTank(id).setDirection(dir);
+            boardPanel.repaint();
+          }
+
+        } else if (sentence.startsWith("Shot")) {
+          int id = Integer.parseInt(sentence.substring(4));
+
+          if (id != clientTank.getTankID()) {
+            boardPanel.getTank(id).Shot();
+          }
+
+        } else if (sentence.startsWith("Remove")) {
+          int id = Integer.parseInt(sentence.substring(6));
+
+          if (id == clientTank.getTankID()) {
+            int response = JOptionPane.showConfirmDialog(null, "Sorry, You are loss. Do you want to try again ?",
+                "Tanks 2D Multiplayer Game", JOptionPane.OK_CANCEL_OPTION);
+            if (response == JOptionPane.OK_OPTION) {
+              // client.closeAll();
+              setVisible(false);
+              dispose();
+
+              new ClientGUI();
+            } else {
+              System.exit(0);
+            }
+          } else {
+            boardPanel.removeTank(id);
+          }
+        } else if (sentence.startsWith("Exit")) {
+          int id = Integer.parseInt(sentence.substring(4));
+
+          if (id != clientTank.getTankID()) {
+            boardPanel.removeTank(id);
+          }
+        } else if (sentence.startsWith("Score")) {
+          int id = Integer.parseInt(sentence.substring(5, 6));
+          int score = Integer.parseInt(sentence.substring(7));
+          if (id == clientTank.getTankID()) {
+            setScore(score);
+          }
+        } else if (sentence.startsWith("Gameover")) {
+          int id = Integer.parseInt(sentence.substring(8));
+          if (id == clientTank.getTankID()) {
+            int response = JOptionPane.showConfirmDialog(null,
+                "Congratulations, You are win. Do you want to play again ?", "Tanks 2D Multiplayer Game",
+                JOptionPane.OK_CANCEL_OPTION);
+            if (response == JOptionPane.OK_OPTION) {
+              // client.closeAll();
+              setVisible(false);
+              dispose();
+
+              new ClientGUI();
+            } else {
+              System.exit(0);
+            }
+          } else {
+            int response = JOptionPane.showConfirmDialog(null, "Sorry, You are loss. Do you want to try again ?",
+                "Tanks 2D Multiplayer Game", JOptionPane.OK_CANCEL_OPTION);
+            if (response == JOptionPane.OK_OPTION) {
+              // client.closeAll();
+              setVisible(false);
+              dispose();
+
+              new ClientGUI();
+            } else {
+              System.exit(0);
+            }
+          }
+        }
+      }
+    }
   }
-}
-
 }

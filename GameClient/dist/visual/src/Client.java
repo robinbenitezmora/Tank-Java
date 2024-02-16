@@ -1,26 +1,26 @@
 import java.io.DataInputStream;
 
 public class Client {
- private Socket clientSocket;
- private String hostName;
- private int serverPort;
- private DataInputStream reader;
- private DataOutputStream writer;
- private Protocol protocol;
+  private Socket clientSocket;
+  private String hostName;
+  private int serverPort;
+  private DataInputStream reader;
+  private DataOutputStream writer;
+  private Protocol protocol;
 
- private static Client client;
+  private static Client client;
 
- private Client() throws IOException {
-  protocol = new Protocol();
- }
+  private Client() throws IOException {
+    protocol = new Protocol();
+  }
 
- public void register(String Ip, int port, int posX, int posY) throws IOException {
-  this.serverPort = port;
-  this.hostName = Ip;
-  clientSocket = new Socket(Ip, port);
+  public void register(String Ip, int port, int posX, int posY) throws IOException {
+    this.serverPort = port;
+    this.hostName = Ip;
+    clientSocket = new Socket(Ip, port);
 
-  writer.writeUTF(protocol.RegisterPacket(posX, posY));
- }
+    writer.writeUTF(protocol.RegisterPacket(posX, posY));
+  }
 
  public void sendToServer(String message) {
   if (message.equals("exit")) {
@@ -37,13 +37,13 @@ public class Client {
   }
 }
 
- public Socket getClientSocket() {
-  return clientSocket;
- }
+  public Socket getClientSocket() {
+    return clientSocket;
+  }
 
- public String getIP() {
-  return hostName;
- }
+  public String getIP() {
+    return hostName;
+  }
 
 public static Client getGameClient() {
  if (client == null) {
@@ -55,13 +55,18 @@ public static Client getGameClient() {
   return client;
  }
 
- public void closeAll() {
-  try {
-   reader.close();
-   writer.close();
-   clientSocket.close();
-  } catch (IOException e) {
-   e.printStackTrace();
+  public void closeAll() {
+    try {
+      reader.close();
+      writer.close();
+      clientSocket.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
- }
+
+  public void connectToServer(String text, int int1, int xPosition, int yPosition) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'connectToServer'");
+  }
 }

@@ -1,4 +1,5 @@
 import java.io.DataInputStream;
+import java.net.Socket;
 
 public class Client {
   private Socket clientSocket;
@@ -68,5 +69,10 @@ public static Client getGameClient() {
   public void connectToServer(String text, int int1, int xPosition, int yPosition) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'connectToServer'");
+  }
+
+  public Socket getSocket() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getSocket'");
   }
 }

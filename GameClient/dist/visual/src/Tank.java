@@ -16,4 +16,14 @@ public class Tank {
   throw new UnsupportedOperationException("Unimplemented method 'getTankID'");
  }
 
+ public int getHealth() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'getHealth'");
+ }
+
+ public void setHealth(int i) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'setHealth'");
+ }
+
 }

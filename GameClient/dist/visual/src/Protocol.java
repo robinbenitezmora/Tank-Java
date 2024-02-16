@@ -6,4 +6,9 @@ public class Protocol {
   throw new UnsupportedOperationException("Unimplemented method 'RemoveClientPacket'");
  }
 
+ public String ExitMessagePacket(Object clientTankID) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'ExitMessagePacket'");
+ }
+
 }

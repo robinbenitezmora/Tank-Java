@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import javafx.scene.image.Image;
 import java.applet.AudioClip;
 import java.awt.image.BufferedImage;
 
@@ -19,7 +18,8 @@ public class Bomb {
  private float velocityX = 0.05f, velocityY = 0.05f;
 
  public Bomb(int x, int y, int direction) {
-  AudioClip sound_boom = (AudioClip) sound_boom;
+  AudioClip sound_boom = null; // Initialize sound_boom variable
+  @SuppressWarnings("null")
   final InputStream stream_boom = new ByteArrayInputStream(sound_boom.toString().getBytes());
   xPos = x;
   yPos = y;
@@ -66,21 +66,13 @@ public class Bomb {
   for (int i = 0; i < clientTanks.size(); i++) {
    if (clientTanks.get(i) != null) {
     x = clientTanks.get(i).getXPosition();
-    y = clientTanks.get(i).getYPosition();
+    // ...
 
     if (yPos >= y && yPos <= y + 30 && xPos >= x && xPos <= x + 30) {
-     ClientGUI clientGUI = (ClientGUI) clientGUI;
-     ((GameStatusPanel) clientGUI.gameStatusPanel).repaint();
-
-     try {
-      Thread.sleep(1000);
-     } catch (InterruptedException e) {
-      e.printStackTrace();
-     }
-     if (clientTanks.get(i) != null)
-      Client.getGameClient().sendToServer(new Protocol().RemoveClientPacket((Object) clientTanks.get(i).getTankID()));
+     clientTanks.get(i).setHealth(clientTanks.get(i).getHealth() - 1);
      return true;
     }
+
    }
   }
   return false;

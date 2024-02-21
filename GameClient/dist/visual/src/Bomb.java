@@ -1,5 +1,3 @@
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -18,9 +16,7 @@ public class Bomb {
  private float velocityX = 0.05f, velocityY = 0.05f;
 
  public Bomb(int x, int y, int direction) {
-  AudioClip sound_boom = null; // Initialize sound_boom variable
-  @SuppressWarnings("null")
-  final InputStream stream_boom = new ByteArrayInputStream(sound_boom.toString().getBytes());
+  AudioClip sound_boom = java.applet.Applet.newAudioClip(getClass().getResource("sounds/bomb.wav"));
   xPos = x;
   yPos = y;
   this.direction = direction;
@@ -62,7 +58,7 @@ public class Bomb {
 
  public boolean checkCollision() {
   ArrayList<Tank> clientTanks = GameBoardPanel.getClients();
-  int x, y;
+  int x, y = 0; // Initialize variable y
   for (int i = 0; i < clientTanks.size(); i++) {
    if (clientTanks.get(i) != null) {
     x = clientTanks.get(i).getXPosition();
@@ -71,8 +67,8 @@ public class Bomb {
     if (yPos >= y && yPos <= y + 30 && xPos >= x && xPos <= x + 30) {
      clientTanks.get(i).setHealth(clientTanks.get(i).getHealth() - 1);
      return true;
-    }
 
+    }
    }
   }
   return false;

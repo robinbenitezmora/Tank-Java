@@ -32,9 +32,39 @@ public class Tank {
   throw new UnsupportedOperationException("Unimplemented method 'getBufferedImage'");
  }
 
- public invalid[] getBomb() {
+ public void getBomb() {
   // TODO Auto-generated method stub
   throw new UnsupportedOperationException("Unimplemented method 'getBomb'");
+ }
+
+ public int getDirection() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'getDirection'");
+ }
+
+ public void moveLeft() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'moveLeft'");
+ }
+
+ public void moveRight() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'moveRight'");
+ }
+
+ public void moveUp() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'moveUp'");
+ }
+
+ public void moveDown() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'moveDown'");
+ }
+
+ public void shot() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'shot'");
  }
 
 }

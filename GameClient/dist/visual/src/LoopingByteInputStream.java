@@ -4,9 +4,13 @@ import java.io.IOException;
 public class LoopingByteInputStream extends ByteArrayInputStream {
  private boolean closed;
 
- public LoopingByteInputStream(byte[] buffer) {
-  super(buffer);
+ public LoopingByteInputStream(Object object) {
+  super(object);
   closed = false;
+ }
+
+ public LoopingByteInputStream(Object samples) {
+  // TODO Auto-generated constructor stub
  }
 
  public int read(byte[] buffer, int offset, int length) {

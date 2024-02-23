@@ -5,12 +5,8 @@ public class LoopingByteInputStream extends ByteArrayInputStream {
  private boolean closed;
 
  public LoopingByteInputStream(Object object) {
-  super(object);
+  super((byte[]) object);
   closed = false;
- }
-
- public LoopingByteInputStream(Object samples) {
-  // TODO Auto-generated constructor stub
  }
 
  public int read(byte[] buffer, int offset, int length) {

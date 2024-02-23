@@ -66,4 +66,9 @@ public class SoundManager {
    run();
   }
  }
+
+ public void playGameOverSound() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'playGameOverSound'");
+ }
 }

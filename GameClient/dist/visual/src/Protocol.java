@@ -29,4 +29,14 @@ public class Protocol {
   message = "SHOT " + id;
   return message;
  }
+
+ public String MessagePacket(String message2) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'MessagePacket'");
+ }
+
+ public String ExitPacket() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'ExitPacket'");
+ }
 }

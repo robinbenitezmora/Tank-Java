@@ -64,4 +64,9 @@ public class GameBoardPanel extends JPanel {
   public static ArrayList<Tank> getClients() {
     return tanks;
   }
+
+  public void registerNewTank(Tank tank2) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'registerNewTank'");
+  }
 }

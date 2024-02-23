@@ -67,4 +67,29 @@ public class Tank {
   throw new UnsupportedOperationException("Unimplemented method 'shot'");
  }
 
+ public void setTankID(int id) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'setTankID'");
+ }
+
+ public void setXPosition(int x) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'setXPosition'");
+ }
+
+ public void setYPosition(int y) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'setYPosition'");
+ }
+
+ public void setDirection(int direction) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'setDirection'");
+ }
+
+ public Object getX() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'getX'");
+ }
+
 }

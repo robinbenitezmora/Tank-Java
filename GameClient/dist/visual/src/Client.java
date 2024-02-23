@@ -61,4 +61,24 @@ public class Client {
     }
     return client;
   }
+
+  public static Client getGameClient() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getGameClient'");
+  }
+
+  public void connectToServer(String text, int int1, int xPosition, int yPosition) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'connectToServer'");
+  }
+
+  public Socket getSocket() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getSocket'");
+  }
+
+  public void sendUpdate(Object x, Object x2, int direction) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'sendUpdate'");
+  }
 }

@@ -25,11 +25,6 @@ public class Protocol {
   return message;
  }
 
- public String ShotPacket(int id) {
-  message = "SHOT " + id;
-  return message;
- }
-
  public String MessagePacket(String message2) {
   // TODO Auto-generated method stub
   throw new UnsupportedOperationException("Unimplemented method 'MessagePacket'");
@@ -38,5 +33,15 @@ public class Protocol {
  public String ExitPacket() {
   // TODO Auto-generated method stub
   throw new UnsupportedOperationException("Unimplemented method 'ExitPacket'");
+ }
+
+ public String UpdatePacket(int xPosition, int yPosition, int direction, Object tankID) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'UpdatePacket'");
+ }
+
+ public String ShotPacket(Object tankID) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'ShotPacket'");
  }
 }

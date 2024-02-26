@@ -13,7 +13,6 @@ public class Tank {
  private int direction = 1;
  private float velocityX = 0.03125f, velocityY = 0.03125f;
  private int width = 560, height = 560;
- private int health = 100;
 
  public int getDirection() {
   return direction;
@@ -196,5 +195,20 @@ public class Tank {
    }
   }
   return false;
+ }
+
+ public int getHealth() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'getHealth'");
+ }
+
+ public void setHealth(int i) {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'setHealth'");
+ }
+
+ public Object getX() {
+  // TODO Auto-generated method stub
+  throw new UnsupportedOperationException("Unimplemented method 'getX'");
  }
 }

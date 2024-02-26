@@ -119,8 +119,8 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 
     try {
       // Remove the unused InnerClientRecivingThread class
-      client.connectToServer(ipaddressText.getText(), Integer.parseInt(portText.getText()), clieTank.getXPosition(),
-          clieTank.getYPosition());
+      client.connectToServer(ipaddressText.getText(), Integer.parseInt(portText.getText()), clieTank.getXPoisition(),
+          clieTank.getXPoisition());
       soundManager = new SoundManager();
       boardPanel.setGameStatus(true);
       boardPanel.setFocusable(true);

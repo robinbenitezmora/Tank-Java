@@ -61,7 +61,7 @@ public class Bomb {
   int x, y = 0; // Initialize variable y
   for (int i = 0; i < clientTanks.size(); i++) {
    if (clientTanks.get(i) != null) {
-    x = clientTanks.get(i).getXPosition();
+    x = clientTanks.get(i).getXPoisition();
     // ...
 
     if (yPos >= y && yPos <= y + 30 && xPos >= x && xPos <= x + 30) {

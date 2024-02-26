@@ -1,20 +1,17 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class GameBoardPanel extends JPanel {
 
-  private Tank tank;
   private int width = 800;
   private int height = 600;
   private static ArrayList<Tank> tanks;
   private boolean gameStatus;
+  private Tank tank;
 
-  public GameBoardPanel(Tank tank, Client client, boolean gameStatus) {
+  public GameBoardPanel(Tank tank, Client client, boolean gameStatus) throws IOException {
     this.tank = tank;
     this.gameStatus = gameStatus;
     setSize(width, height);
@@ -65,8 +62,4 @@ public class GameBoardPanel extends JPanel {
     return tanks;
   }
 
-  public void registerNewTank(Tank tank2) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'registerNewTank'");
-  }
 }

@@ -36,7 +36,7 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 
   private SoundManager soundManager;
 
-  public ClientGUI() {
+  public ClientGUI() throws IOException {
     score = 0;
     setTitle("Tank Game");
     setSize(width, height);
